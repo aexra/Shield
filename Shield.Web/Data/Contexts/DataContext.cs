@@ -5,7 +5,7 @@ namespace Shield.Web.Data.Contexts;
 
 public class DataContext : DbContext
 {
-    DbSet<Contract> Contracts { get; set; }
+    public DbSet<Contract> Contracts { get; set; }
 
     public string DbPath { get; }
 
