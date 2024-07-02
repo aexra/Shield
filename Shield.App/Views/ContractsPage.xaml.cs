@@ -20,7 +20,7 @@ public sealed partial class ContractsPage : Page
 
     private async void Button_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        var response = await ApiHelper.TryLogin("a", "b");
+        var response = await ApiHelper.TryLogin("awufka", "Lutya1_");
         TB.Text = response ?? "no response";
     }
 }
