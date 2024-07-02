@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Shield.Web.Dtos.Role;
 
-namespace Shield.Web.Data.Contexts;
+namespace Shield.Web.Controllers;
 
 [Route("api/roles")]
 [ApiController]
