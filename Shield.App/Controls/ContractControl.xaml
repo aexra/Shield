@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Height="80"
+    
     >
 
     <Grid Margin="0 2 0 2" ColumnSpacing="10">
@@ -27,8 +28,8 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Яша Ла Ва" Style="{StaticResource PageTitleStyle}"/>
-            <TextBlock Grid.Row="1" Text="ул. Пушкина, д. Калатушкина" Style="{StaticResource BodyTextStyle}" Foreground="DarkGray"/>
+            <TextBlock Grid.Row="0" Text="{x:Bind Bailee}" Style="{StaticResource PageTitleStyle}"/>
+            <TextBlock Grid.Row="1" Text="{x:Bind Address}" Style="{StaticResource BodyTextStyle}" Foreground="DarkGray"/>
 
         </Grid>
 

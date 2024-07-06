@@ -19,7 +19,7 @@
             </ScrollViewer>
         </Border>
 
-        <Border Grid.Column="1" CornerRadius="10" Padding="10">
+        <Border Grid.Column="1" CornerRadius="10" Padding="10" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <Grid RowSpacing="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -37,6 +37,16 @@
                 <Button Grid.Row="5" Content="Удалить" HorizontalAlignment="Stretch" x:Name="DeleteContractBtn" Click="DeleteContractBtn_Click"/>
             </Grid>
         </Border>
+
+        <TeachingTip 
+            x:Name="Notification"
+	        Title="{x:Bind NotificationTitle, Mode=OneWay}"
+	        Subtitle="{x:Bind NotificationSubtitle, Mode=OneWay}"
+	        PreferredPlacement="Auto"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        >
+        </TeachingTip>
 
     </Grid>
 </Page>

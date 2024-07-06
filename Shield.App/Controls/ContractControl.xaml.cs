@@ -19,13 +19,14 @@ public sealed partial class ContractControl : UserControl, INotifyPropertyChange
         this.InitializeComponent();
     }
 
-    public ContractControl(Contract c) : base()
+    public ContractControl(Contract c)
     {
         ContractId = c.Id;
         Address = c.Address;
         PlanSrc = c.PlanSrc;
         Owners = c.Owners;
         Bailee = c.Bailee;
+        InitializeComponent();
     }
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
