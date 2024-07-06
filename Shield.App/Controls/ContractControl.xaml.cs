@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml.Controls;
+using Shield.DataAccess.Models;
 
 namespace Shield.App.Controls;
 public sealed partial class ContractControl : UserControl, INotifyPropertyChanged
@@ -16,6 +17,15 @@ public sealed partial class ContractControl : UserControl, INotifyPropertyChange
     public ContractControl()
     {
         this.InitializeComponent();
+    }
+
+    public ContractControl(Contract c) : base()
+    {
+        ContractId = c.Id;
+        Address = c.Address;
+        PlanSrc = c.PlanSrc;
+        Owners = c.Owners;
+        Bailee = c.Bailee;
     }
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
