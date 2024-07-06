@@ -15,6 +15,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Controls\ContractControl.xaml" />
     <None Remove="Views\ProfilePage.xaml" />
   </ItemGroup>
 
@@ -38,6 +39,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Controls\ContractControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\ProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
