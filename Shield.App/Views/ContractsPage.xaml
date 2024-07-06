@@ -15,24 +15,7 @@
 
         <Border Grid.Column="0">
             <ScrollViewer>
-                <ListView SelectionChanged="ListView_SelectionChanged">
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    <controls:ContractControl HorizontalAlignment="Stretch"/>
-                    
-                </ListView>
+                <ListView x:Name="ContractsLV" ItemsSource="{x:Bind contractControls, Mode=OneWay}"/>
             </ScrollViewer>
         </Border>
 
@@ -47,11 +30,11 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 
-                <Button Grid.Row="0" Content="Создать" HorizontalAlignment="Stretch"/>
-                <Button Grid.Row="1" Content="Изменить" HorizontalAlignment="Stretch"/>
-                <Button Grid.Row="2" Content="Подробнее" HorizontalAlignment="Stretch"/>
-                <Button Grid.Row="4" Content="Обновить список" HorizontalAlignment="Stretch"/>
-                <Button Grid.Row="5" Content="Удалить" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="0" Content="Создать" HorizontalAlignment="Stretch" x:Name="CreateContractBtn" Click="CreateContractBtn_Click"/>
+                <Button Grid.Row="1" Content="Изменить" HorizontalAlignment="Stretch" x:Name="EditContractBtn" Click="EditContractBtn_Click"/>
+                <Button Grid.Row="2" Content="Подробнее" HorizontalAlignment="Stretch" x:Name="MoreContractBtn" Click="MoreContractBtn_Click"/>
+                <Button Grid.Row="4" Content="Обновить список" HorizontalAlignment="Stretch" x:Name="UpdateContractsListBtn" Click="UpdateContractsListBtn_Click"/>
+                <Button Grid.Row="5" Content="Удалить" HorizontalAlignment="Stretch" x:Name="DeleteContractBtn" Click="DeleteContractBtn_Click"/>
             </Grid>
         </Border>
 
