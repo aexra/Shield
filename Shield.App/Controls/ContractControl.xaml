@@ -7,11 +7,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Height="80"
+    xmlns:media="using:CommunityToolkit.WinUI.Media"
+    xmlns:ui="using:CommunityToolkit.WinUI"
     
+    Height="80"
     >
 
-    <Grid Margin="0 2 0 2" ColumnSpacing="10">
+    <UserControl.Resources>
+        <media:AttachedCardShadow x:Key="CommonShadow" Offset="0,3" Opacity="0.4"/>
+    </UserControl.Resources>
+
+    <Grid Margin="0 5 0 5" ColumnSpacing="10" ui:Effects.Shadow="{StaticResource CommonShadow}">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>

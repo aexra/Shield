@@ -64,8 +64,6 @@ public sealed partial class ContractsPage : Page, INotifyPropertyChanged
             {
                 contractControls.Add(new(contract));
             }
-
-            Notify(contractControls.Count.ToString());
         }
         else
         {
