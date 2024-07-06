@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shield.App.Core\Shield.App.Core.csproj" />
+    <ProjectReference Include="..\Shield.DataAccess\Shield.DataAccess.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

@@ -5,7 +5,7 @@ using Shield.Web.Data.Models;
 using Shield.Web.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-using Shield.Web.Dtos.User;
+using Shield.DataAccess.DTOs;
 
 namespace Shield.Web.Controllers;
 
@@ -95,8 +95,8 @@ public class AppUserController : ControllerBase
         var result = _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
 
         if (!result.IsCompletedSuccessfully) return Unauthorized("Username not found and/or password incorrect");
-
-        return Ok(new NewUserDto()
+        
+        return Ok(new LoginResponseDto()
         {
             UserName = user.UserName,
             Email = user.Email,
@@ -124,7 +124,7 @@ public class AppUserController : ControllerBase
                 var roleResult = await _userManager.AddToRoleAsync(user, "User");
                 if (roleResult.Succeeded)
                 {
-                    return Ok(new NewUserDto
+                    return Ok(new LoginResponseDto
                     {
                         UserName = user.UserName,
                         Email = user.Email,

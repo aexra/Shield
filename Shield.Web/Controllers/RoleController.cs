@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shield.Web.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-using Shield.Web.Dtos.Role;
+using Shield.DataAccess.DTOs;
 
 namespace Shield.Web.Controllers;
 

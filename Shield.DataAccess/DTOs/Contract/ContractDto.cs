@@ -1,4 +1,4 @@
-﻿namespace Shield.Web.Dtos.Contract;
+﻿namespace Shield.DataAccess.DTOs;
 
 public class ContractDto
 {

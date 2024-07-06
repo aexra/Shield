@@ -22,4 +22,8 @@
     <Folder Include="Data\Databases\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shield.DataAccess\Shield.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

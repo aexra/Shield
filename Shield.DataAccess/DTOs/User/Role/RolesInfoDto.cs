@@ -1,4 +1,4 @@
-﻿namespace Shield.Web.Dtos.Role;
+﻿namespace Shield.DataAccess.DTOs;
 
 public class RolesInfoDto
 {

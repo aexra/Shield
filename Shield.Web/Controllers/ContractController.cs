@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 
 using Shield.Web.Data.Contexts;
-using Shield.Web.Dtos.Contract;
-using Shield.Web.Data.Models;
-using System.Xml;
+using Shield.DataAccess.DTOs;
+using Shield.DataAccess.Models;
 
 namespace Shield.Web.Controllers;
 
@@ -23,7 +22,7 @@ public class ContractController : ControllerBase
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetAllContracts()
     {
-        return Ok(_context.Contracts);
+        return Ok(new GetAllContractsResponse() { Contracts=_context.Contracts.ToList() });
     }
 
     [HttpPost]

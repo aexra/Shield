@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shield.Web.Data.Models;
+using Shield.DataAccess.Models;
 
 namespace Shield.Web.Data.Contexts;
 

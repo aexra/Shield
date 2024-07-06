@@ -1,4 +1,4 @@
-﻿namespace Shield.Web.Data.Models;
+﻿namespace Shield.DataAccess.Models;
 
 public class Contract
 {
