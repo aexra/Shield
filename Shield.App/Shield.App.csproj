@@ -16,6 +16,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\ContractControl.xaml" />
+    <None Remove="Controls\RemovableTextBox.xaml" />
+    <None Remove="Dialogs\CreateContractDialog.xaml" />
     <None Remove="Views\ProfilePage.xaml" />
   </ItemGroup>
 
@@ -41,6 +43,12 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Controls\RemovableTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Dialogs\CreateContractDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Controls\ContractControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

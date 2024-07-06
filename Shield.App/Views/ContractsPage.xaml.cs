@@ -2,9 +2,11 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Windows.ApplicationModel.Resources;
 using Shield.App.Controls;
+using Shield.App.Dialogs;
 using Shield.App.Helpers;
 using Shield.App.ViewModels;
 using Shield.DataAccess.DTOs;
@@ -33,7 +35,20 @@ public sealed partial class ContractsPage : Page, INotifyPropertyChanged
 
     private async void CreateContractBtn_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        
+        ContentDialog dialog = new ContentDialog();
+
+        // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+        dialog.XamlRoot = this.XamlRoot;
+        dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        dialog.Title = "Новый контракт";
+        dialog.PrimaryButtonText = "Сохранить";
+        dialog.CloseButtonText = "Отмена";
+        dialog.DefaultButton = ContentDialogButton.Primary;
+        dialog.Content = new CreateContractDialog();
+        dialog.Width = 1400;
+
+        var result = await dialog.ShowAsync();
+
     }
 
     private async void EditContractBtn_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
