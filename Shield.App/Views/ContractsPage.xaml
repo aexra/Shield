@@ -6,8 +6,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel x:Name="ContentArea">
-        <Button x:Uid="Shell_Contracts" Click="Button_Click"/>
-        <TextBox x:Name="TB" AcceptsReturn="True"/>
-    </StackPanel>
+    <Grid Margin="0 0 0 20" ColumnSpacing="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" CornerRadius="10">
+            <ScrollViewer>
+                <ListBox>
+                    <TextBlock Text="Sample Text" FontSize="90"/>
+                    <TextBlock Text="Sample Text" FontSize="90"/>
+                    <TextBlock Text="Sample Text" FontSize="90"/>
+                    <TextBlock Text="Sample Text" FontSize="90"/>
+                    <TextBlock Text="Sample Text" FontSize="90"/>
+                    <TextBlock Text="Sample Text" FontSize="90"/>
+                    <TextBlock Text="Sample Text" FontSize="90"/>
+                </ListBox>
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Column="1" CornerRadius="10" Padding="10">
+            <Grid RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Row="0" Content="Создать контракт" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="1" Content="Изменить контракт" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="3" Content="Удалить контракт" HorizontalAlignment="Stretch"/>
+            </Grid>
+        </Border>
+
+    </Grid>
 </Page>
