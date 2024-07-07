@@ -46,7 +46,7 @@
                 -->
                 <NavigationViewItem x:Uid="Shell_Contracts" helpers:NavigationHelper.NavigateTo="Shield.App.ViewModels.ContractsViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF571;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>

@@ -29,12 +29,47 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                
-                <Button Grid.Row="0" Content="Создать" HorizontalAlignment="Stretch" x:Name="CreateContractBtn" Click="CreateContractBtn_Click"/>
-                <Button Grid.Row="1" Content="Изменить" HorizontalAlignment="Stretch" x:Name="EditContractBtn" Click="EditContractBtn_Click"/>
-                <Button Grid.Row="2" Content="Подробнее" HorizontalAlignment="Stretch" x:Name="MoreContractBtn" Click="MoreContractBtn_Click"/>
-                <Button Grid.Row="4" Content="Обновить список" HorizontalAlignment="Stretch" x:Name="UpdateContractsListBtn" Click="UpdateContractsListBtn_Click"/>
-                <Button Grid.Row="5" Content="Удалить" HorizontalAlignment="Stretch" x:Name="DeleteContractBtn" Click="DeleteContractBtn_Click"/>
+
+                <Button Grid.Row="0" HorizontalAlignment="Stretch" x:Name="CreateContractBtn" Click="CreateContractBtn_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" FontSize="16"/>
+                            <TextBlock Text="Создать"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" HorizontalAlignment="Stretch" x:Name="EditContractBtn" Click="EditContractBtn_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" FontSize="16"/>
+                            <TextBlock Text="Изменить"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="2" HorizontalAlignment="Stretch" x:Name="MoreContractBtn" Click="MoreContractBtn_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE712;" FontSize="16"/>
+                            <TextBlock Text="Подробнее"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="4" HorizontalAlignment="Stretch" x:Name="UpdateContractsListBtn" Click="UpdateContractsListBtn_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE777;" FontSize="16"/>
+                            <TextBlock Text="Обновить список"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="5" HorizontalAlignment="Stretch" x:Name="DeleteContractBtn" Click="DeleteContractBtn_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" FontSize="16"/>
+                            <TextBlock Text="Удалить"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
             </Grid>
         </Border>
 
