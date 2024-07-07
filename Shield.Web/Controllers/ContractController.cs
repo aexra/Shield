@@ -29,7 +29,7 @@ public class ContractController : ControllerBase
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> CreateContract([FromBody] ContractDto dto)
     {
-        var entity = await _context.Contracts.AddAsync(new Contract { Address=dto.Address, PlanSrc=dto.TEMPplansrcTEMP, Owners=string.Join(";", dto.Owners), Bailee=dto.Bailee });
+        var entity = await _context.Contracts.AddAsync(new Contract { Address=dto.Address, Plan=dto.Plan, Owners=string.Join(";", dto.Owners), Bailee=dto.Bailee });
         await _context.SaveChangesAsync();
         return Ok(entity.Entity);
     }
@@ -65,7 +65,7 @@ public class ContractController : ControllerBase
         if (contract != null)
         {
             contract.Address = dto.Address;
-            contract.PlanSrc = dto.TEMPplansrcTEMP;
+            contract.Plan = dto.Plan;
             contract.Owners = string.Join(";", dto.Owners);
             contract.Bailee = dto.Bailee;
 

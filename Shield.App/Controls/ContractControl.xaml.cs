@@ -8,9 +8,9 @@ public sealed partial class ContractControl : UserControl, INotifyPropertyChange
 {
     public int ContractId { get; set; }
     public string Address { get; set; }
-    public string PlanSrc { get; set; }
     public string Owners { get; set; }
     public string Bailee { get; set; }
+    public Plan Plan { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
     
@@ -21,9 +21,9 @@ public sealed partial class ContractControl : UserControl, INotifyPropertyChange
 
     public ContractControl(Contract c)
     {
-        ContractId = c.Id;
+        ContractId = c.ContractId;
         Address = c.Address;
-        PlanSrc = c.PlanSrc;
+        Plan = c.Plan;
         Owners = c.Owners;
         Bailee = c.Bailee;
         InitializeComponent();

@@ -22,6 +22,20 @@ public sealed partial class CreateContractDialog : UserControl, INotifyPropertyC
         }
     }
 
+    private string _photoPath = string.Empty;
+    public string PhotoPath
+    {
+        get => _photoPath;
+        set
+        {
+            if (value != _photoPath)
+            {
+                _photoPath = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
     private ObservableCollection<RemovableTextBox> OwnersControls { get; set; } = new();
 
     public event PropertyChangedEventHandler PropertyChanged;

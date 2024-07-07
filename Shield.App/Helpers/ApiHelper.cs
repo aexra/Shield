@@ -73,7 +73,7 @@ public class ApiHelper
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/contract");
         request.Method = HttpMethod.Post;
-        request.Content = JsonContent.Create(new ContractDto() { Address=contract.Address, TEMPplansrcTEMP=contract.PlanSrc, Owners=contract.Owners.Split(';').ToList(), Bailee=contract.Bailee });
+        request.Content = JsonContent.Create(new ContractDto() { Address=contract.Address, Plan=contract.Plan, Owners=contract.Owners.Split(';').ToList(), Bailee=contract.Bailee });
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
         return null;
     }
@@ -101,7 +101,7 @@ public class ApiHelper
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/contract/{id}");
         request.Method = HttpMethod.Post;
-        request.Content = JsonContent.Create(new ContractDto() { Address = replacer.Address, TEMPplansrcTEMP = replacer.PlanSrc, Owners = replacer.Owners.Split(';').ToList(), Bailee = replacer.Bailee });
+        request.Content = JsonContent.Create(new ContractDto() { Address = replacer.Address, Plan = replacer.Plan, Owners = replacer.Owners.Split(';').ToList(), Bailee = replacer.Bailee });
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
         return null;
     }
