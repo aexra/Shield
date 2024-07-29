@@ -49,11 +49,16 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF571;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem x:Uid="Shell_Alarms" helpers:NavigationHelper.NavigateTo="Shield.App.ViewModels.AlarmsViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE7BA;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem x:Uid="Shell_Profile" helpers:NavigationHelper.NavigateTo="Shield.App.ViewModels.ProfileViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE77B;"/>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE779;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.FooterMenuItems>
@@ -84,5 +89,15 @@
                 <Frame x:Name="NavigationFrame" />
             </Grid>
         </NavigationView>
+
+        <TeachingTip 
+            x:Name="Notification"
+            Title="{x:Bind NotificationTitle, Mode=OneWay}"
+            Subtitle="{x:Bind NotificationSubtitle, Mode=OneWay}"
+            PreferredPlacement="Auto"
+            PlacementMargin="20"
+            IsLightDismissEnabled="True"
+            >
+        </TeachingTip>
     </Grid>
 </Page>

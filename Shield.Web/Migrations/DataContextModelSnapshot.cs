@@ -17,6 +17,25 @@ namespace Shield.Web.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
 
+            modelBuilder.Entity("Shield.DataAccess.Models.Alarm", b =>
+                {
+                    b.Property<int>("AlarmId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AlarmId");
+
+                    b.HasIndex("ContractId");
+
+                    b.ToTable("Alarms");
+                });
+
             modelBuilder.Entity("Shield.DataAccess.Models.Contract", b =>
                 {
                     b.Property<int>("ContractId")
@@ -31,16 +50,20 @@ namespace Shield.Web.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Owners")
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Organization")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PlanId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Owners")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("SignDate")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ContractId");
-
-                    b.HasIndex("PlanId");
 
                     b.ToTable("Contracts");
                 });
@@ -51,7 +74,7 @@ namespace Shield.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ContractId")
+                    b.Property<int>("ContractId")
                         .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("Data")
@@ -68,7 +91,8 @@ namespace Shield.Web.Migrations
 
                     b.HasKey("PictureId");
 
-                    b.HasIndex("ContractId");
+                    b.HasIndex("ContractId")
+                        .IsUnique();
 
                     b.ToTable("Pictures");
                 });
@@ -77,6 +101,9 @@ namespace Shield.Web.Migrations
                 {
                     b.Property<int>("PlanId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ContractId")
                         .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("Data")
@@ -93,30 +120,54 @@ namespace Shield.Web.Migrations
 
                     b.HasKey("PlanId");
 
+                    b.HasIndex("ContractId")
+                        .IsUnique();
+
                     b.ToTable("Plans");
                 });
 
-            modelBuilder.Entity("Shield.DataAccess.Models.Contract", b =>
+            modelBuilder.Entity("Shield.DataAccess.Models.Alarm", b =>
                 {
-                    b.HasOne("Shield.DataAccess.Models.Plan", "Plan")
-                        .WithMany()
-                        .HasForeignKey("PlanId")
+                    b.HasOne("Shield.DataAccess.Models.Contract", "Contract")
+                        .WithMany("Alarms")
+                        .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Plan");
+                    b.Navigation("Contract");
                 });
 
             modelBuilder.Entity("Shield.DataAccess.Models.Picture", b =>
                 {
-                    b.HasOne("Shield.DataAccess.Models.Contract", null)
-                        .WithMany("Pictures")
-                        .HasForeignKey("ContractId");
+                    b.HasOne("Shield.DataAccess.Models.Contract", "Contract")
+                        .WithOne("Picture")
+                        .HasForeignKey("Shield.DataAccess.Models.Picture", "ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contract");
+                });
+
+            modelBuilder.Entity("Shield.DataAccess.Models.Plan", b =>
+                {
+                    b.HasOne("Shield.DataAccess.Models.Contract", "Contract")
+                        .WithOne("Plan")
+                        .HasForeignKey("Shield.DataAccess.Models.Plan", "ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contract");
                 });
 
             modelBuilder.Entity("Shield.DataAccess.Models.Contract", b =>
                 {
-                    b.Navigation("Pictures");
+                    b.Navigation("Alarms");
+
+                    b.Navigation("Picture")
+                        .IsRequired();
+
+                    b.Navigation("Plan")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

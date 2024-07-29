@@ -5,7 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Shield.App.Controls"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Grid Margin="0 0 0 20" ColumnSpacing="20">
         <Grid.ColumnDefinitions>
@@ -15,7 +16,19 @@
 
         <Border Grid.Column="0">
             <ScrollViewer>
-                <ListView x:Name="ContractsLV" ItemsSource="{x:Bind contractControls, Mode=OneWay}"/>
+                <ListView x:Name="ContractsLV" ItemsSource="{x:Bind contractControls, Mode=OneWay}" IsItemClickEnabled="True" SelectionMode="None">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </ScrollViewer>
         </Border>
 
@@ -24,9 +37,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
@@ -34,54 +45,44 @@
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" FontSize="16"/>
-                            <TextBlock Text="Создать"/>
+                            <TextBlock x:Uid="CreateContractButton"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Grid.Row="1" HorizontalAlignment="Stretch" x:Name="EditContractBtn" Click="EditContractBtn_Click">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" FontSize="16"/>
-                            <TextBlock Text="Изменить"/>
+                <DropDownButton Grid.Row="1" HorizontalAlignment="Stretch">
+                    <DropDownButton.Content>
+                        <StackPanel Spacing="10" Orientation="Horizontal">
+                            <FontIcon Glyph="&#xE8CB;" FontSize="16"/>
+                            <TextBlock x:Uid="SortContractButton"/>
                         </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Grid.Row="2" HorizontalAlignment="Stretch" x:Name="MoreContractBtn" Click="MoreContractBtn_Click">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE712;" FontSize="16"/>
-                            <TextBlock Text="Подробнее"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Grid.Row="4" HorizontalAlignment="Stretch" x:Name="UpdateContractsListBtn" Click="UpdateContractsListBtn_Click">
+                    </DropDownButton.Content>
+                    <DropDownButton.Flyout>
+                        <MenuFlyout Placement="Bottom">
+                            <MenuFlyoutItem x:Name="SortNone" x:Uid="SortTypeNo" Icon="Cancel" Click="SortNone_Click"/>
+                            <MenuFlyoutItem x:Name="SortName" x:Uid="SortTypeName" Icon="Contact" Click="SortName_Click"/>
+                            <MenuFlyoutItem x:Name="SortAddress" x:Uid="SortTypeAddress" Click="SortAddress_Click">
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon Glyph="&#xE707;"/>
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem x:Name="SortAlarms" x:Uid="SortTypeAlarms" Click="SortAlarms_Click">
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon Glyph="&#xE783;"/>
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+                <Button Grid.Row="3" HorizontalAlignment="Stretch" x:Name="UpdateContractsListBtn" Click="UpdateContractsListBtn_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE777;" FontSize="16"/>
-                            <TextBlock Text="Обновить список"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Grid.Row="5" HorizontalAlignment="Stretch" x:Name="DeleteContractBtn" Click="DeleteContractBtn_Click">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" FontSize="16"/>
-                            <TextBlock Text="Удалить"/>
+                            <TextBlock x:Uid="UpdateListContractButton"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
             </Grid>
         </Border>
-
-        <TeachingTip 
-            x:Name="Notification"
-	        Title="{x:Bind NotificationTitle, Mode=OneWay}"
-	        Subtitle="{x:Bind NotificationSubtitle, Mode=OneWay}"
-	        PreferredPlacement="Auto"
-	        PlacementMargin="20"
-	        IsLightDismissEnabled="True"
-	        >
-        </TeachingTip>
-
+        
     </Grid>
 </Page>

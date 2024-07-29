@@ -6,7 +6,6 @@ using Shield.App.Activation;
 using Shield.App.Contracts.Services;
 using Shield.App.Core.Contracts.Services;
 using Shield.App.Core.Services;
-using Shield.App.Helpers;
 using Shield.App.Models;
 using Shield.App.Notifications;
 using Shield.App.Services;
@@ -76,6 +75,8 @@ public partial class App : Application
             services.AddTransient<SettingsPage>();
             services.AddTransient<ContractsViewModel>();
             services.AddTransient<ContractsPage>();
+            services.AddTransient<AlarmsViewModel>();
+            services.AddTransient<AlarmsPage>();
             services.AddTransient<ProfilePage>();
             services.AddTransient<ProfileViewModel>();
             services.AddTransient<ShellPage>();
@@ -101,7 +102,7 @@ public partial class App : Application
     {
         base.OnLaunched(args);
 
-        App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
+        //App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 
         await App.GetService<IActivationService>().ActivateAsync(args);
     }

@@ -1,29 +1,87 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.UI.Xaml;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using Shield.App.Helpers;
+using Windows.Storage;
+using Shield.DataAccess.DTOs;
+using System.Net.Http.Json;
 
 namespace Shield.App.Views;
-/// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
-/// </summary>
-public sealed partial class ProfilePage : Page
+public sealed partial class ProfilePage : Page, INotifyPropertyChanged
 {
+    private readonly ShellPage Shell;
+    private bool isLoggedIn = false;
+    public bool IsLoggedIn
+    {
+        get => isLoggedIn;
+        set
+        {
+            if (value != isLoggedIn)
+            {
+                isLoggedIn = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(IsNotLoggedIn));
+                NotifyPropertyChanged(nameof(Profile));
+            }
+        }
+    }
+    public bool IsNotLoggedIn => !isLoggedIn;
+    public ProfileInfoDto Profile { get; set; }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
     public ProfilePage()
     {
         this.InitializeComponent();
+        Shell = ShellPage.Instance;
+    }
+
+    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private async Task VerifyLoginStatus()
+    {
+        var response = await ApiHelper.CheckConnection();
+
+        if (response == null || !response.IsSuccessStatusCode)
+        {
+            IsLoggedIn = false;
+        }
+        else
+        {
+            // TODO: Get profile data
+            var resp = await ApiHelper.Me();
+            var profile = await resp.Content.ReadFromJsonAsync<ProfileInfoDto>();
+            Profile = profile;
+
+            IsLoggedIn = true;
+        }
+    }
+
+    private async void LoginButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        var response = await AuthHelper.ShowAuthDialogAsync(this.XamlRoot);
+
+        if (response == null)
+        {
+            await VerifyLoginStatus();
+        }
+        else
+        {
+            Shell.Notify("Error".GetLocalized(), response);
+        }
+    }
+
+    private async void Page_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        await VerifyLoginStatus();
+    }
+
+    private void LogoutButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        ApplicationData.Current.LocalSettings.Values.Remove("apiToken");
+        IsLoggedIn = false;
     }
 }

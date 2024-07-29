@@ -2,7 +2,6 @@
 using Windows.Storage;
 
 using Shield.DataAccess.DTOs;
-using Shield.DataAccess.Models;
 
 namespace Shield.App.Helpers;
 public class ApiHelper
@@ -11,106 +10,170 @@ public class ApiHelper
     private static HttpClient _sharedClient = new();
     private static string? _token => (string?)ApplicationData.Current.LocalSettings.Values["apiToken"];
 
-    public static async Task<object?> Login(string name, string password)
+    public static async Task<HttpResponseMessage?> CheckConnection()
+    {
+        using var request = new HttpRequestMessage();
+        request.RequestUri = new Uri($"{_baseAddress}/user/check");
+        request.Method = HttpMethod.Get;
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
+
+        return await _sharedClient.SendAsync(request);
+    }
+    
+    public static async Task<HttpResponseMessage?> Login(string name, string password)
     {
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/user/login");
         request.Method = HttpMethod.Post;
         request.Content = JsonContent.Create(new LoginDto() { UserName=name, Password=password });
-        ///request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
 
-        try
-        {
-            var response = await _sharedClient.SendAsync(request);
-            var dto = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
+        var response = await _sharedClient.SendAsync(request);
 
-            if (dto != null)
-            {
-                ApplicationData.Current.LocalSettings.Values["apiToken"] = dto.Token;
-            }
-
-            return dto;
-        }
-        catch (Exception ex)
-        {
-            return ex;
-        }
+        return response;
     }
-
-    public static async Task<string?> Register(string name, string password, string email)
+    public static async Task<HttpResponseMessage?> Register(string name, string password, string email)
     {
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/user/register");
         request.Method = HttpMethod.Post;
         request.Content = JsonContent.Create(new RegisterDto() { UserName = name, Password = password, Email = email });
 
-        try
-        {
-            var response = await _sharedClient.SendAsync(request);
-            return await response.Content.ReadAsStringAsync();
-        }
-        catch (Exception ex)
-        {
-            return ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : "");
-        }
+        return await _sharedClient.SendAsync(request);
     }
+    
+    public static async Task<HttpResponseMessage?> Me()
+    {
+        using var request = new HttpRequestMessage();
+        request.RequestUri = new Uri($"{_baseAddress}/user/me");
+        request.Method = HttpMethod.Get;
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
 
-    public static async Task<GetAllContractsResponse?> GetAllContracts()
+        return await _sharedClient.SendAsync(request);
+    }
+    public static async Task<HttpResponseMessage?> GetUserProfile(string id)
+    {
+        using var request = new HttpRequestMessage();
+        request.RequestUri = new Uri($"{_baseAddress}/user/profile/{id}");
+        request.Method = HttpMethod.Get;
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
+
+        return await _sharedClient.SendAsync(request);
+    }
+    public static async Task<HttpResponseMessage?> GetAllContracts()
     {
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/contract");
         request.Method = HttpMethod.Get;
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
 
-        var response = await _sharedClient.SendAsync(request);
-        var dto = await response.Content.ReadFromJsonAsync<GetAllContractsResponse>();
-
-        return dto;
+        return await _sharedClient.SendAsync(request);
     }
-
-    public static async Task<Contract?> CreateContract(Contract contract)
+    public static async Task<HttpResponseMessage?> CreateContract(ContractDto contract)
     {
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/contract");
         request.Method = HttpMethod.Post;
-        request.Content = JsonContent.Create(new ContractDto() { Address=contract.Address, Plan=contract.Plan, Owners=contract.Owners.Split(';').ToList(), Bailee=contract.Bailee });
+        request.Content = JsonContent.Create(contract);
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
-        return null;
-    }
 
-    public static async Task<Contract?> GetContract(int id)
+        var response = await _sharedClient.SendAsync(request);
+
+        return response;
+    }
+    public static async Task<HttpResponseMessage?> GetContractFull(int id)
     {
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/contract/{id}");
         request.Method = HttpMethod.Get;
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
-        return null;
-    }
 
-    public static async Task<Contract?> DeleteContract(int id)
+        var response = await _sharedClient.SendAsync(request);
+
+        return response;
+    }
+    public static async Task<HttpResponseMessage?> GetContractInfo(int id)
+    {
+        using var request = new HttpRequestMessage();
+        request.RequestUri = new Uri($"{_baseAddress}/contract/{id}F");
+        request.Method = HttpMethod.Get;
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
+
+        var response = await _sharedClient.SendAsync(request);
+
+        return response;
+    }
+    public static async Task<HttpResponseMessage?> DeleteContract(int id)
     {
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/contract/{id}");
         request.Method = HttpMethod.Delete;
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
-        return null;
-    }
 
-    public static async Task<Contract?> UpdateContract(int id, Contract replacer)
+        var response = await _sharedClient.SendAsync(request);
+
+        return response;
+    }
+    public static async Task<HttpResponseMessage?> UpdateContract(int id, ContractDto replacer)
     {
         using var request = new HttpRequestMessage();
         request.RequestUri = new Uri($"{_baseAddress}/contract/{id}");
-        request.Method = HttpMethod.Post;
-        request.Content = JsonContent.Create(new ContractDto() { Address = replacer.Address, Plan = replacer.Plan, Owners = replacer.Owners.Split(';').ToList(), Bailee = replacer.Bailee });
+        request.Method = HttpMethod.Put;
+
+        var dto = new UpdateContractDto()
+        {
+            Address = replacer.Address,
+            Bailee = replacer.Bailee,
+            Owners = replacer.Owners,
+            Comment = replacer.Comment,
+            Organization = replacer.Organization,
+        };
+
+        if (replacer.Plan != null)
+        {
+            dto.Plan = replacer.Plan;
+        }
+
+        if (replacer.Picture != null)
+        {
+            dto.Picture = replacer.Picture;
+        }
+
+        request.Content = JsonContent.Create(dto);
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
-        return null;
+        
+        var response = await _sharedClient.SendAsync(request);
+
+        return response;
     }
+    public static async Task<HttpResponseMessage?> GetAllAlarms()
+    {
+        using var request = new HttpRequestMessage();
+        request.RequestUri = new Uri($"{_baseAddress}/alarm");
+        request.Method = HttpMethod.Get;
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
+
+        var response = await _sharedClient.SendAsync(request);
+
+        return response;
+    }
+    public static async Task<HttpResponseMessage?> CreateAlarm(CreateAlarmDto alarm)
+    {
+        using var request = new HttpRequestMessage();
+        request.RequestUri = new Uri($"{_baseAddress}/alarm");
+        request.Method = HttpMethod.Post;
+        request.Content = JsonContent.Create(alarm);
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
+
+        var response = await _sharedClient.SendAsync(request);
+
+        return response;
+    }
+    
     private class LoginDto
     {
         public string UserName { get; set; }
         public string Password { get; set; }
     }
-
     private class RegisterDto
     {
         public string UserName { get; set; }
