@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Web+Desktop",
+    "Projects": [
+      {
+        "Path": "Shield.Web\\Shield.Web.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "Shield.App\\Shield.App.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "6c74davK76Y=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\aexra\\source\\repos\\Shield\\Shield.App.Core\\Shield.App.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aexra\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

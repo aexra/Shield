@@ -1,0 +1,13 @@
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\bin\Debug\net7.0\Shield.App.Core.deps.json
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\bin\Debug\net7.0\Shield.App.Core.dll
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\bin\Debug\net7.0\Shield.App.Core.pdb
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.csproj.AssemblyReference.cache
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.AssemblyInfoInputs.cache
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.AssemblyInfo.cs
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.csproj.CoreCompileInputs.cache
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.sourcelink.json
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.dll
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\refint\Shield.App.Core.dll
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\Shield.App.Core.pdb
+C:\Users\aexra\source\repos\Shield\Shield.App.Core\obj\Debug\net7.0\ref\Shield.App.Core.dll

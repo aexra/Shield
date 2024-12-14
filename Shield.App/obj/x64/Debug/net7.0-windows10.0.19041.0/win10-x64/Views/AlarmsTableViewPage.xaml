@@ -1,0 +1,95 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="Shield.App.Views.AlarmsTableViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+	xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+                        >
+
+    <Grid RowSpacing="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Spacing="5">
+            <StackPanel Orientation="Horizontal" Spacing="5">
+                <TextBlock Text="Показать все" VerticalAlignment="Center"/>
+                <CheckBox x:ConnectionId='9' x:Name="ShowAllCB"                                                            />
+            </StackPanel>
+            <StackPanel x:ConnectionId='4' Orientation="Horizontal" Spacing="5"                                                          >
+                <TextBlock x:ConnectionId='5' x:Name="FromTB" Text="С" VerticalAlignment="Center"/>
+                <CalendarDatePicker x:ConnectionId='6' 
+                    x:Name="FromCDP" 
+                                                                            
+                                                                        
+                                                                     
+                                                     
+                    PlaceholderText="Выберите дату"/>
+                <TextBlock x:ConnectionId='7' x:Name="UntilTB" Text="по" VerticalAlignment="Center"/>
+                <CalendarDatePicker x:ConnectionId='8' 
+                    x:Name="UntilCDP" 
+                                                                            
+                                                                        
+                                                                     
+                                                      
+                    PlaceholderText="Выберите дату"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <controls:DataGrid x:ConnectionId='2'
+            x:Name="AlarmsDG"
+            Grid.Row="1"
+            AutoGenerateColumns="False"
+                                                                
+            GridLinesVisibility="All"
+            AlternatingRowBackground="#202020"
+            CanUserSortColumns="True"
+                                      >
+
+            <controls:DataGrid.RowStyle>
+                <Style TargetType="controls:DataGridRow">
+                    <Setter Property="ContextFlyout">
+                        <Setter.Value>
+                            <MenuFlyout>
+                                <MenuFlyoutItem x:ConnectionId='3' x:Name="ExportMFI" x:Uid="FlyoutExportButton"                        >
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF584;" FontSize="16"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </controls:DataGrid.RowStyle>
+            
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn 
+                    Header="ID" Tag="AlarmId" 
+                    Width="SizeToHeader"
+                    Binding="{Binding AlarmId}"/>
+                <controls:DataGridTextColumn 
+                    Header="Дата" Tag="Date" 
+                    Width="SizeToCells"
+                    Binding="{Binding Date}"/>
+                <controls:DataGridTextColumn 
+                    Header="Организация" Tag="Organization" 
+                    Width="SizeToCells"
+                    Binding="{Binding Organization}"/>
+                <controls:DataGridTextColumn 
+                    Header="Адрес" Tag="Address" 
+                    Width="SizeToCells"
+                    Binding="{Binding Address}"/>
+                <controls:DataGridTextColumn 
+                    Header="Результат вызова" Tag="Result" 
+                    Width="SizeToHeader"
+                    Binding="{Binding ResultLocalizationTag}"/>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+        
+    </Grid>
+</Page>
+

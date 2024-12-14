@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "2dWLeOS8DGbRMM9VYPtVpuBx5udYr9XB12qXbMfix5c=",
+  "Source": "Shield.Web",
+  "BasePath": "_content/Shield.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:ConnectionId='1'
+    x:Class="Shield.App.Dialogs.CreateContractDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Shield.App.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Width="498" RowSpacing="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*" MaxHeight="80"/>
+            <RowDefinition Height="357"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" ColumnSpacing="5">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox x:ConnectionId='12' Grid.Column="0" x:Uid="BaileeCreateContractDialog" x:Name="BaileeTB"                                   />
+            <TextBlock Grid.Column="1" x:Uid="LegalEntityTextBlock" TextAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox x:ConnectionId='13' Grid.Column="2" x:Name="LegalEntityCB"                                                                    />
+            
+        </Grid>
+        
+        <TextBox x:ConnectionId='2' x:Uid="AddressCreateContractDialog" x:Name="AddressTB" Grid.Row="1"                                    />
+        <TextBox x:ConnectionId='3' x:Uid="CommentCreateContractDialog" x:Name="CommentTB" Grid.Row="2"                                    />
+        <TextBox x:ConnectionId='4' x:Uid="OrganizationCreateContractDialog" x:Name="OrganizationTB" Grid.Row="3"                                         />
+        <Grid Grid.Row="4" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Spacing="5">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <TextBlock x:Uid="OtherOwnersTB"/>
+                    <Button x:ConnectionId='11' Content="+" Padding="0" Width="20" Height="20"                            />
+                </StackPanel>
+                <Border  MaxHeight="80">
+                    <ScrollViewer VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Visible" Padding="0 0 0 20">
+                        <ListView x:ConnectionId='10'                                                    SelectionMode="None"/>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                <Button x:ConnectionId='8' x:Uid="UploadPhotoButton" x:Name="LoadPhotoButton"                             />
+                <TextBlock x:ConnectionId='9' x:Name="PhotoPathTB"                                        TextAlignment="Right"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                <Button x:ConnectionId='6' x:Uid="UploadPlanButton" x:Name="LoadPlanButton"                            />
+                <TextBlock x:ConnectionId='7' x:Name="PlanPathTB"                                       TextAlignment="Right"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="5" CornerRadius="5">
+            <WebView2 x:ConnectionId='5' x:Name="WV"/>
+        </Border>
+    </Grid>
+</UserControl>
+

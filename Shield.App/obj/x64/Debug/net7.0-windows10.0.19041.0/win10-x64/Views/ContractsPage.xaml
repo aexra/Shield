@@ -1,0 +1,89 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="Shield.App.Views.ContractsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Shield.App.Controls"
+    mc:Ignorable="d"
+                        >
+
+    <Grid Margin="0 0 0 20" ColumnSpacing="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0">
+            <ScrollViewer>
+                <ListView x:ConnectionId='8' x:Name="ContractsLV"                                                      IsItemClickEnabled="True" SelectionMode="None">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Column="1" CornerRadius="10" Padding="10" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Button x:ConnectionId='2' Grid.Row="0" HorizontalAlignment="Stretch" x:Name="CreateContractBtn"                                >
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" FontSize="16"/>
+                            <TextBlock x:Uid="CreateContractButton"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <DropDownButton Grid.Row="1" HorizontalAlignment="Stretch">
+                    <DropDownButton.Content>
+                        <StackPanel Spacing="10" Orientation="Horizontal">
+                            <FontIcon Glyph="&#xE8CB;" FontSize="16"/>
+                            <TextBlock x:Uid="SortContractButton"/>
+                        </StackPanel>
+                    </DropDownButton.Content>
+                    <DropDownButton.Flyout>
+                        <MenuFlyout Placement="Bottom">
+                            <MenuFlyoutItem x:ConnectionId='4' x:Name="SortNone" x:Uid="SortTypeNo" Icon="Cancel"                       />
+                            <MenuFlyoutItem x:ConnectionId='5' x:Name="SortName" x:Uid="SortTypeName" Icon="Contact"                       />
+                            <MenuFlyoutItem x:ConnectionId='6' x:Name="SortAddress" x:Uid="SortTypeAddress"                          >
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon Glyph="&#xE707;"/>
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem x:ConnectionId='7' x:Name="SortAlarms" x:Uid="SortTypeAlarms"                         >
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon Glyph="&#xE783;"/>
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+                <Button x:ConnectionId='3' Grid.Row="3" HorizontalAlignment="Stretch" x:Name="UpdateContractsListBtn"                                     >
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE777;" FontSize="16"/>
+                            <TextBlock x:Uid="UpdateListContractButton"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Border>
+        
+    </Grid>
+</Page>
+
