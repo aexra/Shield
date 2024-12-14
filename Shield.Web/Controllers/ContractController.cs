@@ -34,6 +34,36 @@ public class ContractController : ControllerBase
             Organization = entity.Organization,
             SignDate = entity.SignDate,
             IsLegalEntity = entity.IsLegalEntity,
+            UserId = entity.UserId,
+            Picture = new PictureDto()
+            {
+                PictureId = entity.Picture.PictureId,
+                Title = entity.Picture.Title,
+                Type = entity.Picture.Type,
+                Data = entity.Picture.Data
+            },
+            Alarms = entity.Alarms.Select(a => new AlarmDto()
+            {
+                AlarmId = a.AlarmId,
+                Date = a.Date
+            }).ToList()
+        }).ToList());
+    }
+
+    [HttpGet("user/{userId}")]
+    public async Task<IActionResult> GetUserContracts([FromRoute] int userId)
+    {
+        return Ok(_context.Contracts.Where(c => c.UserId == userId).Include(c => c.Picture).Include(c => c.Alarms).Select(entity => new ContractDto()
+        {
+            ContractId = entity.ContractId,
+            Address = entity.Address,
+            Owners = entity.Owners,
+            Bailee = entity.Bailee,
+            Comment = entity.Comment,
+            Organization = entity.Organization,
+            SignDate = entity.SignDate,
+            IsLegalEntity = entity.IsLegalEntity,
+            UserId = entity.UserId,
             Picture = new PictureDto()
             {
                 PictureId = entity.Picture.PictureId,
@@ -62,6 +92,7 @@ public class ContractController : ControllerBase
             Organization = contract.Organization,
             SignDate = contract.SignDate,
             IsLegalEntity = contract.IsLegalEntity,
+            UserId = contract.UserId,
         };
 
         var plan = new Plan()
@@ -99,6 +130,7 @@ public class ContractController : ControllerBase
             Organization = entity.Organization,
             SignDate = entity.SignDate,
             IsLegalEntity = entity.IsLegalEntity,
+            UserId = entity.UserId,
             Plan = new PlanDto()
             {
                 PlanId = entity.Plan.PlanId,
@@ -131,6 +163,7 @@ public class ContractController : ControllerBase
             Organization = entity.Organization,
             SignDate = entity.SignDate,
             IsLegalEntity = entity.IsLegalEntity,
+            UserId = entity.UserId,
             Plan = new PlanDto()
             {
                 PlanId = entity.Plan.PlanId,
@@ -169,6 +202,7 @@ public class ContractController : ControllerBase
             Organization = entity.Organization,
             SignDate = entity.SignDate,
             IsLegalEntity = entity.IsLegalEntity,
+            UserId = entity.UserId,
             Plan = new PlanDto()
             {
                 PlanId = entity.Plan.PlanId,

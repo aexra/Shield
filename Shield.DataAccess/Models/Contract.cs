@@ -12,6 +12,7 @@ public class Contract
     public string Organization { get; set; }
     public DateOnly SignDate { get; set; }
     public bool IsLegalEntity { get; set; }
+    public int UserId { get; set; }
 
     // Navigation properties
     public Plan Plan { get; set; }

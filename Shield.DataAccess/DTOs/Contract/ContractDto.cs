@@ -9,6 +9,7 @@ public class ContractDto
     public string Organization { get; set; }
     public DateOnly SignDate { get; set; }
     public bool IsLegalEntity { get; set; }
+    public int UserId { get; set; }
 
     public PlanDto Plan { get; set; }
     public PictureDto Picture { get; set; }
