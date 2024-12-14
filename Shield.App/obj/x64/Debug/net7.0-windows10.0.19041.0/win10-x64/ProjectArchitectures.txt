@@ -1,1 +1,0 @@
-C:\Users\aexra\source\repos\Shield\Shield.App\Shield.App.csproj;x64
