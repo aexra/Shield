@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Shield.DataAccess.DTOs;
 using Vanguard.Web.Data.Contexts;
 
 namespace Shield.Web.Controllers;
@@ -18,7 +19,7 @@ public class ReportController : ControllerBase
     [HttpGet("1")]
     public async Task<IActionResult> GetFirstReport()
     {
-        var result = _context.Keyless.FromSql(@$"
+        var result = await _context.Database.SqlQuery<Report1>(@$"
             CREATE TEMP TABLE IF NOT EXISTS OrgsOwners AS
             select organizationid, name, type, ownerid from organizations;
 

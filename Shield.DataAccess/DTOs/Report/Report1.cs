@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Shield.DataAccess.Models;
-
-[Keyless]
-public class Keyless
+﻿namespace Shield.DataAccess.DTOs;
+public class Report1
 {
     public string Name { get; set; }
     public string Type { get; set; }

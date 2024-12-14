@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using User = Vanguard.Web.Data.Models.User;
-using Shield.DataAccess.Models;
 
 namespace Vanguard.Web.Data.Contexts;
 
 public class VanguardContext : IdentityDbContext<User>
 {
-    public DbSet<Keyless> Keyless { get; set; }
-
     public VanguardContext()
     {
         
@@ -22,7 +19,5 @@ public class VanguardContext : IdentityDbContext<User>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
-        builder.Entity<Keyless>().HasNoKey();
     }
 }
