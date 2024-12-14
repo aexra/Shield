@@ -21,6 +21,7 @@ public class PageService : IPageService
         Configure<AlarmsTableViewViewModel, AlarmsTableViewPage>();
         Configure<MyContractsPageViewModel, MyContractsPage>();
         Configure<CrewCallsPageViewModel, CrewCallsPage>();
+        Configure<FReportPageViewModel, FReportPage>();
     }
 
     public Type GetPageType(string key)

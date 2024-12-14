@@ -28,6 +28,7 @@
     <None Remove="Dialogs\CreateContractDialog.xaml" />
     <None Remove="Views\AlarmsPage.xaml" />
     <None Remove="Views\CrewCallsPage.xaml" />
+    <None Remove="Views\FReportPage.xaml" />
     <None Remove="Views\MyContracts.xaml" />
     <None Remove="Views\ProfilePage.xaml" />
   </ItemGroup>
@@ -69,6 +70,9 @@
     <None Update="Misc\WordTemplates\contract_report_template.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\FReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\CrewCallsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

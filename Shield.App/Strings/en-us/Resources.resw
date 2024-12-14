@@ -425,4 +425,7 @@
   <data name="Shell_CrewCalls.Content" xml:space="preserve">
     <value>Мои выезды</value>
   </data>
+  <data name="Shell_FReport.Content" xml:space="preserve">
+    <value>Отчет 1</value>
+  </data>
 </root>

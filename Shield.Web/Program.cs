@@ -7,6 +7,7 @@ using Shield.Web.Data.Contexts;
 using Shield.Web.Data.Models;
 using Shield.Web.Interfaces;
 using Shield.Web.Services;
+using Vanguard.Web.Data.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,7 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddDbContext<IdentityContext>();
 builder.Services.AddDbContext<DataContext>();
+builder.Services.AddDbContext<VanguardContext>();
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
     options.User.RequireUniqueEmail = true;

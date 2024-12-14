@@ -85,6 +85,7 @@ public partial class App : Application
             services.AddTransient<ShellViewModel>();
             services.AddTransient<MyContractsPageViewModel>();
             services.AddTransient<CrewCallsPageViewModel>();
+            services.AddTransient<FReportPageViewModel>();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
