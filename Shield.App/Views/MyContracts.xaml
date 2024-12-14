@@ -6,10 +6,26 @@
     xmlns:local="using:Shield.App.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
-    <Grid>
+    <Grid RowSpacing="10"
+          RowDefinitions="Auto, *">
+
+        <StackPanel Grid.Row="0"
+                    Spacing="10"
+                    Orientation="Horizontal">
+            <TextBox x:Name="UserIdTextBox"
+                     PlaceholderText="Идентификатор пользователя"/>
+            <Button x:Name="SearchButton"
+                    Content="Найти"
+                    Click="SearchButton_Click"/>
+        </StackPanel>
+
+        <ListView Grid.Row="1"
+                  x:Name="ContractsLV"
+                  ItemsSource="{x:Bind ViewModel.ContractsControls, Mode=OneWay}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"/>
 
     </Grid>
 </Page>

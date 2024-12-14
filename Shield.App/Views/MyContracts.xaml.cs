@@ -11,4 +11,12 @@ public sealed partial class MyContractsPage : Page
         ViewModel = App.GetService<MyContractsPageViewModel>();
         this.InitializeComponent();
     }
+
+    private async void SearchButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        if (int.TryParse(UserIdTextBox.Text, out var id))
+        {
+            await ViewModel.SearchContracts(id);
+        }
+    }
 }
