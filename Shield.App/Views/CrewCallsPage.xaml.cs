@@ -11,4 +11,12 @@ public sealed partial class CrewCallsPage : Page
         ViewModel = App.GetService<CrewCallsPageViewModel>();
         this.InitializeComponent();
     }
+
+    private async void SearchButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        if (int.TryParse(IdTextBox.Text, out var id))
+        {
+            await ViewModel.LoadCalls(id);
+        }
+    }
 }

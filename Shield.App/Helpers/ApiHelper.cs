@@ -77,6 +77,15 @@ public class ApiHelper
 
         return await _sharedClient.SendAsync(request);
     }
+    public static async Task<HttpResponseMessage?> GetCrewCalls(int crewId)
+    {
+        using var request = new HttpRequestMessage();
+        request.RequestUri = new Uri($"{_baseAddress}/crew/{crewId}/calls");
+        request.Method = HttpMethod.Get;
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
+
+        return await _sharedClient.SendAsync(request);
+    }
     public static async Task<HttpResponseMessage?> CreateContract(ContractDto contract)
     {
         using var request = new HttpRequestMessage();

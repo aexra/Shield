@@ -6,9 +6,28 @@
     xmlns:local="using:Shield.App.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid RowSpacing="10"
+      RowDefinitions="Auto, *">
+
+        <StackPanel Grid.Row="0"
+                Spacing="10"
+                Orientation="Horizontal">
+            <TextBox x:Name="IdTextBox"
+                 PlaceholderText="Идентификатор бригады"/>
+            <Button x:Name="SearchButton"
+                Content="Найти"
+                Click="SearchButton_Click"/>
+        </StackPanel>
+
+        <controls:DataGrid x:Name="DG"
+                           Grid.Row="1"
+                           AutoGenerateColumns="True"
+                           ItemsSource="{x:Bind ViewModel.Calls, Mode=OneWay}"
+                           GridLinesVisibility="All"
+                           AlternatingRowBackground="#202020"/>
 
     </Grid>
 </Page>
