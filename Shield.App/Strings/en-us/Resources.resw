@@ -419,4 +419,10 @@
   <data name="Alarm" xml:space="preserve">
     <value>Сигнализация</value>
   </data>
+  <data name="Shell_MyContracts.Content" xml:space="preserve">
+    <value>Мои контракты</value>
+  </data>
+  <data name="Shell_CrewCalls.Content" xml:space="preserve">
+    <value>Мои выезды</value>
+  </data>
 </root>

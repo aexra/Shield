@@ -19,6 +19,8 @@ public class PageService : IPageService
         Configure<ProfileViewModel, ProfilePage>();
         Configure<SettingsViewModel, SettingsPage>();
         Configure<AlarmsTableViewViewModel, AlarmsTableViewPage>();
+        Configure<MyContractsPageViewModel, MyContractsPage>();
+        Configure<CrewCallsPageViewModel, CrewCallsPage>();
     }
 
     public Type GetPageType(string key)
