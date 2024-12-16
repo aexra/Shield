@@ -9,8 +9,14 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid RowSpacing="10"
-          RowDefinitions="Auto, *">
+    <Grid RowSpacing="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0"
                     Spacing="10"
@@ -20,12 +26,26 @@
                     Click="SearchButton_Click"/>
         </StackPanel>
 
-        <controls:DataGrid x:Name="DG"
-                       Grid.Row="1"
-                       AutoGenerateColumns="True"
-                       ItemsSource="{x:Bind ViewModel.Data, Mode=OneWay}"
-                       GridLinesVisibility="All"
-                       AlternatingRowBackground="#202020"/>
+        <controls:DataGrid x:Name="DG1"
+                           Grid.Row="1"
+                           AutoGenerateColumns="True"
+                           ItemsSource="{x:Bind ViewModel.Data1, Mode=OneWay}"
+                           GridLinesVisibility="All"
+                           AlternatingRowBackground="#202020"/>
+
+        <controls:DataGrid x:Name="DG2"
+                           Grid.Row="2"
+                           AutoGenerateColumns="True"
+                           ItemsSource="{x:Bind ViewModel.Data2, Mode=OneWay}"
+                           GridLinesVisibility="All"
+                           AlternatingRowBackground="#202020"/>
+
+        <controls:DataGrid x:Name="DG3"
+                           Grid.Row="3"
+                           AutoGenerateColumns="True"
+                           ItemsSource="{x:Bind ViewModel.Data3, Mode=OneWay}"
+                           GridLinesVisibility="All"
+                           AlternatingRowBackground="#202020"/>
 
     </Grid>
 </Page>

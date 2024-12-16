@@ -17,7 +17,7 @@ public class ReportController : ControllerBase
     }
 
     [HttpGet("1")]
-    public async Task<IActionResult> GetFirstReport()
+    public async Task<IActionResult> GetReport1()
     {
         var result = await _context.Database.SqlQuery<Report1>(@$"
             CREATE TEMP TABLE IF NOT EXISTS OrgsOwners AS
@@ -34,6 +34,35 @@ public class ReportController : ControllerBase
             group by oo.organizationid, oo.name, oo.type;
 
             SELECT * FROM Report1;
+        ").ToListAsync();
+
+        return Ok(result);
+    }
+
+    [HttpGet("2")]
+    public async Task<IActionResult> GetReport2()
+    {
+        var result = await _context.Database.SqlQuery<Report2>(@$"
+            select os.type, os.name, price  from contracts c
+            join (
+	            select * from organizations o
+	            where o.ownerid is not null
+            ) os on os.organizationid = c.organizationid
+            join owners ows on ows.ownerid = os.ownerid
+            group by price, os.type, os.name
+            order by price;
+        ").ToListAsync();
+
+        return Ok(result);
+    }
+
+    [HttpGet("3")]
+    public async Task<IActionResult> GetReport3()
+    {
+        var result = await _context.Database.SqlQuery<Report3>(@$"
+            select c.crewid, c.name, leaderid, firstname, lastname, middlename, phonenumber from crews c
+            join crewmembers cm on cm.memberid = c.leaderid
+            join users u on cm.userid = u.userid
         ").ToListAsync();
 
         return Ok(result);
